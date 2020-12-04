@@ -104,8 +104,7 @@ sayHello("Cristian", 26)
 function myFunction(a, b){
 	return a*b
 }
-var x = myFunction(5, 6)
-document.write("<br>"+x)
+myFunction(5, 6)
 
 //VENTANAS
 alert("Do you really want to leave this page?")
@@ -283,7 +282,6 @@ function containsAll(arr, ...nums){
 		}
 		return true
 }
-console.log(containsAll)
 
 //SPREAD EN FUNCIONES
 //Antes
@@ -296,8 +294,9 @@ myFunction.apply(null, args.concat(4))
 const myFunctionn = (w, x, y, z) =>{
 	console.log(w+x+y+z)
 }
-let argss = [1,2,3]
+let argss = [1, 2, 3]
 myFunctionn(...argss, 4)
+console.log(myFunctionn)
 
 var dateFields = [1970, 0, 1]
 var date = new Date(...dateFields)
@@ -309,3 +308,66 @@ var arr2 = ["One", "Two", "Five"]
 arr2.splice(2, 0, "Three")
 arr2.splice(3, 0, "Four")
 console.log(arr2)
+
+//Ahora
+let newArr = ["Three", "Four"]
+let arr1 = ['One', 'Two', ...newArr, 'Five']
+console.log(arr1)
+
+//SPREAD EN LITERALS DE OBJETOS
+const obj11 = { foo: 'bar', x: 42}
+const obj2 = { foo: 'baz', y: 5}
+
+const clonedObj = {...obj11}
+const mergedObj = {...obj11, ...obj2}
+console.log(mergedObj, clonedObj)
+
+const merge = (...objects)=>({...objects})
+let mergedObj1 = merge(obj11, obj2)
+console.log(mergedObj1)
+
+
+//CLASES
+class Rectangle{
+	constructor(height, width){
+		this.height = height
+		this.width = width
+	}
+}
+// a partir de la anterior clase, con new Rectangle creamos otras
+const square = new Rectangle(5, 5)
+const poster = new Rectangle(2, 3)
+
+//METODOS DE CLASE
+class Rectangle1{
+	constructor(height, width){
+		this.height = height
+		this.width = width
+	}
+	get area(){
+		return this.calcArea()
+	}
+	calcArea(){
+		return this.height * this.width
+	}
+}
+const square1 = new Rectangle1(5, 5)
+console.log(square1.area)
+
+const sqcris = new Rectangle1(10, 54)
+console.log(sqcris.area)
+
+class Point {
+	constructor(x, y){
+		this.x = x
+		this.y = y
+	}
+	static distance (a, b){
+		const dx = a.x - b.x
+		const dy = a.y - b.y
+		return Math.hypot(dx, dy)
+	}
+}
+const p1 = new Point (7, 2)
+const p2 = new Point (3, 8)
+console.log(Point.distance(p1, p2))
